@@ -10,8 +10,8 @@
   --surface-alt: #eef1f6;
   --white: #fff;
   --focus: #0433b2;
-  --font-body: Georgia, "Times New Roman", serif;
-  --font-display: Arial, Helvetica, sans-serif;
+  --font-body: "Charis SIL", Georgia, serif;
+  --font-display: "Unbounded", Arial, sans-serif;
   --content-width: 1120px;
 }
 
@@ -39,11 +39,8 @@ a:hover { color: var(--ink); }
   width: min(100% - 32px, var(--content-width)); min-height: 88px; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
-.logo-link {
-  color: var(--white); font-family: "Courier New", monospace; font-size: 26px; font-weight: 700;
-  letter-spacing: 2px; text-decoration: none; border: 2px solid var(--white); padding: 8px 10px;
-}
-.logo-link:hover { color: var(--accent); border-color: var(--accent); }
+.logo-link { display: inline-flex; align-items: center; min-height: 44px; }
+.logo-link img { display: block; width: auto; height: 64px; }
 .nav { display: flex; flex-wrap: wrap; gap: 8px 28px; }
 .nav a { color: var(--white); min-height: 44px; display: inline-flex; align-items: center; text-decoration: none; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
@@ -85,6 +82,7 @@ select:focus, input:focus { border-color: var(--focus); }
 
 @media (max-width: 760px) {
   .header-inner { align-items: flex-start; flex-direction: column; padding: 16px 0; }
+  .logo-link img { height: 48px; }
   .nav { gap: 4px 16px; }
   .page-heading { padding: 48px 0 56px; }
   .filters-grid { grid-template-columns: 1fr; }
