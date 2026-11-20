@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Каталог експонатів — Software and Computer Museum</title>
+  <meta name="description" content="Каталог експонатів Software and Computer Museum з пошуком і фільтрами.">
+  <link rel="stylesheet" href="./katalog.css">
+  <script src="./katalog.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до вмісту</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo-link" href="./index.html" aria-label="Software and Computer Museum — на головну">SCM</a>
+      <nav class="nav" aria-label="Розділи сторінки">
+        <a href="./index.html#courses">Курси</a>
+        <a href="./index.html#tour">Екскурсія</a>
+        <a href="./katalog.html" aria-current="page">Експонати</a>
+        <a href="./index.html#about">Про музей</a>
+        <a href="./index.html#contacts">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-heading" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="eyebrow">Software and Computer Museum</p>
+        <h1 id="page-title">Каталог експонатів</h1>
+        <p class="lead">Знаходьте експонати за типом, десятиліттям або назвою.</p>
+      </div>
+    </section>
+
+    <section class="catalog-section" aria-labelledby="filters-title">
+      <div class="wrap">
+        <div class="filters-panel">
+          <h2 id="filters-title">Фільтри каталогу</h2>
+          <div class="filters-grid">
+            <div class="field">
+              <label for="type-filter">Тип</label>
+              <select id="type-filter" name="type">
+                <option value="">Усі типи</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="decade-filter">Десятиліття</label>
+              <select id="decade-filter" name="decade">
+                <option value="">Усі десятиліття</option>
+                <option value="1970-ті">1970-ті</option>
+                <option value="1980-ті">1980-ті</option>
+                <option value="1990-ті">1990-ті</option>
+              </select>
+            </div>
+            <div class="field field-search">
+              <label for="name-search">Пошук за назвою</label>
+              <input id="name-search" name="name" type="search" autocomplete="off" placeholder="Наприклад, Amiga">
+            </div>
+          </div>
+        </div>
+
+        <p id="result-count" class="result-count" aria-live="polite">Знайдено експонатів: 0</p>
+        <div id="exhibits-list" class="exhibits-list" aria-live="polite"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <p>Нічого не знайдено</p>
+          <button id="reset-empty" class="button button-primary" type="button">Скинути фільтри</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p class="footer-brand">Software and Computer Museum</p>
+      <div class="footer-contact">
+        <span>вул. Григорія Сковороди, 79/1, Харків</span>
+        <a href="tel:+380675394095">067 539 4095</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
