@@ -19,6 +19,20 @@
     }, 80);
   }
 
+  // Блок «Музей відкритий»: CSS-анімація чекає на паузі, доки блок не з'явиться
+  // на екрані. Без JS вона просто йде після завантаження, за «зменшити рух» її немає.
+  var hours = document.querySelector('.hours-card');
+  if (hours && !reduceMotion && 'IntersectionObserver' in window) {
+    hours.classList.add('hours-wait');
+    var hoursObserver = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        hours.classList.remove('hours-wait');
+        hoursObserver.disconnect();
+      }
+    }, { threshold: 0.5 });
+    hoursObserver.observe(hours);
+  }
+
   // Мобільне меню
   var button = document.querySelector('.menu-btn');
   var nav = document.getElementById('main-nav');

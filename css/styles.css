@@ -324,6 +324,56 @@ main:focus { outline: none; }
 .announce-title { font-size: clamp(20px, 2.2vw, 24px); line-height: 1.3; font-weight: 600; color: var(--primary); }
 .announce-card .more-link { align-self: center; }
 
+/* ---------- Години роботи: анімований блок під першим екраном ---------- */
+.hours-card { border-width: 3px; }
+.hours-text { display: flex; flex: 1 1 320px; flex-direction: column; align-items: flex-start; gap: var(--space-1); }
+.hours-title {
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--primary);
+}
+.hours-when { font-size: 22px; line-height: 32px; font-weight: 700; color: var(--ink); }
+.hours-text .tag { margin-top: var(--space-1); }
+.hours-when .nowrap { white-space: nowrap; }
+
+/* Піксельні квадрати як у логотипі: частина з рамкою, частина залита */
+.hours-pixels {
+  display: grid;
+  grid-template-columns: repeat(3, 20px);
+  grid-auto-rows: 20px;
+  gap: 6px;
+  flex: none;
+}
+.hours-pixels span { border: 3px solid var(--primary); background: #ffffff; }
+.hours-pixels .px-on { background: var(--primary); }
+
+/* Рядки тексту з'являються по черзі. Початковий стан — видимий текст,
+   тож без анімації (або з «Зменшити рух») усе показано одразу. */
+.hours-line { animation: hours-line-in 600ms ease-out backwards; }
+.hours-line:nth-child(1) { animation-delay: 150ms; }
+.hours-line:nth-child(2) { animation-delay: 550ms; }
+.hours-line:nth-child(3) { animation-delay: 950ms; }
+@keyframes hours-line-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Квадрати плавно змінюють колір: повільно, без різких спалахів,
+   і зупиняються менш ніж за 5 секунд (WCAG 2.2.2). */
+.hours-pixels span { animation: hours-px-fill 1800ms ease-in-out 2 alternate; }
+.hours-pixels .px-on { animation-name: hours-px-clear; }
+.hours-pixels span:nth-child(2) { animation-delay: 200ms; }
+.hours-pixels span:nth-child(3) { animation-delay: 400ms; }
+.hours-pixels span:nth-child(4) { animation-delay: 600ms; }
+.hours-pixels span:nth-child(5) { animation-delay: 800ms; }
+.hours-pixels span:nth-child(6) { animation-delay: 1000ms; }
+@keyframes hours-px-fill { to { background-color: var(--primary); } }
+@keyframes hours-px-clear { to { background-color: var(--surface-alt); } }
+/* Поки блок не на екрані, анімація стоїть на паузі (клас ставить js/main.js) */
+.hours-wait .hours-line,
+.hours-wait .hours-pixels span { animation-play-state: paused; }
+
 /* ---------- Експонати ---------- */
 .exhibit { padding: 0; gap: 0; overflow: hidden; }
 .exhibit img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
@@ -596,6 +646,7 @@ main:focus { outline: none; }
   html { scroll-behavior: auto; }
   .lift, .lift:hover { transition: none; transform: none; }
   .caret { animation: none; }
+  .hours-line, .hours-pixels span { animation: none; }
   .btn, .to-top { transition: none; }
   .to-top:active { transform: none; }
   .btn-primary:active { transform: none; }
